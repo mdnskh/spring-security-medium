@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class HelloController {
+class HelloController(private val service:HelloService) {
 
     @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])
     fun sayHello(): Map<String, Any> {
-        return mapOf("text" to "Hello world")
+        return mapOf("text" to service.sayHello())
     }
 }
