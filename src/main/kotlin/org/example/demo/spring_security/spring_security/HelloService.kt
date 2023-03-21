@@ -1,12 +1,11 @@
 package org.example.demo.spring_security.spring_security
 
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 
 @Service
-class HelloService {
+class HelloService(private val securityUtils: SecurityUtils) {
     fun sayHello(): String {
-        val userName = SecurityContextHolder.getContext().authentication.name
+        val userName = securityUtils.getCurrentUser().username
         return "Hello ${userName}! Welcome to spring security."
     }
 }
